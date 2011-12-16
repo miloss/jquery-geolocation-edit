@@ -8,8 +8,8 @@
 	|__/                       |___/  |___/                                      
 	
 
-jQuery plugin for editing latitude/longitude pair with Google Maps window
-and (optional) geocoding address text with Google Geocoding API.
+jQuery plugin for editing latitude/longitude pair with Google Maps window.
+Also, there is (optional) geocoding of address text with Google Geocoding API.
 
 For examples and some documentation, see:
 http://miloss.github.com/jquery-geolocation-edit
