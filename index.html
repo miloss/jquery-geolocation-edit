@@ -6,8 +6,8 @@
   <meta name="description" content=""/>
   
   <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
-  <script type="text/javascript" src="jquery.min.js"></script>
-  <script type="text/javascript" src="geotest.js"></script>
+  <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="jquery-geolocation-edit-gmaps.js"></script>
   
 </head>
 
@@ -17,6 +17,18 @@ body {
 	background: url("background.png") repeat scroll 0 0 transparent;
 	margin: 0;
 	margin-left: 104px;
+	width: 850px;
+}
+
+pre {
+	background-color: #EEE;
+	border-left: 4px solid #BBB;
+	width: 531px;
+	padding: 4px;
+}
+
+.smaller {
+	font-size: small;
 }
 
 /*
@@ -49,14 +61,18 @@ h1 {
 }
 */
 
-#map, #map2 {
+#map, #map2, #map3 {
 	width: 320px;
 	height: 200px;
-	background-color: #CCCCCC;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 
 #map2 {
+}
+
+#map3 {
+	width: 512px;
+	height: 320px;
 }
 
 #address3 {
@@ -103,27 +119,66 @@ $(document).ready(function () {
 	<div id="blue_square"></div>
 	<h1>jquery-geolocation-edit</h1>
 	
+	<h2>Download</h2>
+	<p><a href="jquery-geolocation-edit-gmaps.js">jquery-geolocation-edit-gmaps.js</a>. <em style="font-size: small;">5kb, uncompressed with comments</em></p>
 	
+	<h2>Examples</h2>
+	<p>Required params are only coordinates fields, which can be pre-populated. <em>Hint: drag marker on map.</em></p>
 	
+	<p class="smaller">CSS:</p>
+	<pre>#map { width:320px; height:200px; }</pre>
+	
+	<p class="smaller">JavaScript:</p>
+	<pre>$("#map").geolocate({
+	lat: "#lat",
+	lng: "#lng"
+});</pre>
 	<div id="map"></div>
-	<input type="text" class="txtfield" id="lat" value="45">
-	<input type="text" class="txtfield" id="lng" value="20">
+	<input type="text" class="txtfield" id="lat" value="44.81">
+	<input type="text" class="txtfield" id="lng" value="20.46">
 	
 	<br/><br/>
 	
+	
+	<p>Fields can be hidden (see page source) and you can pass any additional options for Google Maps API, both for map 
+	(defined <a target="_blank" href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MapOptions">here</a>)
+	 and marker (defined <a target="_blank" href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MarkerOptions">here</a>).</p>
+	
+	
+	<pre>$("#map2").geolocate({
+	lat: "#lat2",
+	lng: "#lng2",
+	mapOptions: {
+		mapTypeId: "satellite"
+	}
+});</pre>
 	<div id="map2"></div>
-	<input type="text" class="txtfield" id="lat2" value="44.81">
-	<input type="text" class="txtfield"  id="lng2" value="20.46">
+	<input type="hidden" class="txtfield" id="lat2" value="44.81">
+	<input type="hidden" class="txtfield"  id="lng2" value="20.46">
 	
-	<br/><br/>
+	<br/>
 	
-	<div id="map3" style="height: 200px; width: 512px; background-color: #EEE;"></div>
+	
+	<h3>Geolocating from address</h3>
+	
+	<p>You can get position from address field (or multiple fields). 
+	Location will populate when you change text field and focus out. <em>Hint: try completing address info below.</em></p>
+	<p><span style="color:red;">Note:</span> geocoding is an expensive operation, and there are 
+	Google Geocoding API <a target="_blank" href="http://code.google.com/apis/maps/documentation/geocoding/#Limits">usage limits</a> for non-Premium accounts, so be sure 
+	<span style="text-decoration: underline;">not</span> to do this automatically on every page load.</p>
+	
+	
+	<pre>$("#map3").geolocate({
+	lat: "#lat3",
+	lng: "#lng3",
+	address: ["#address3"]
+});</pre>
+	<div id="map3"></div>
 	<input type="hidden" id="lat3" value="48.85">
 	<input type="hidden" id="lng3" value="2.35">
-	<input type="text" id="address3" value="abbey road, london, uk">
+	<input type="text" id="address3" value="uk, london, abbey roa">
 	
-	<br/><br/>
-	<br/><br/>
+	<br/><br/><br/>
 	
 </body>
 </html>

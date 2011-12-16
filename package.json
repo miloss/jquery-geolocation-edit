@@ -10,11 +10,11 @@
 	"description": "Edit latitude/longitude pair with Google Maps window and/or geocode with address text.",
 	"licences": [{
 		"type": "MIT",
-		"url": "http://github.com/miloss/jquery-geolocation-gmaps/blob/master/LICENSE-MIT"
+		"url": "http://github.com/miloss/jquery-geolocation-edit/blob/master/LICENCE-MIT"
 	}],
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/miloss/jquery-geolocation-gmaps"
+		"url": "git://github.com/miloss/jquery-geolocation-edit"
 	},
 	"dependencies": {
 		"jquery": "1.4"
