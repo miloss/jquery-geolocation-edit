@@ -1,0 +1,22 @@
+{
+	"name": "geolocation-edit-gmaps",
+	"version": "0.0.1",
+	"title": "Geolocation editing with Google Maps",
+	"author": {
+		"name": "Milos Popovic",
+		"email": "the.elephant@gmail.com",
+		"url": "http://github.com/miloss"
+	},
+	"description": "Edit latitude/longitude pair with Google Maps window and/or geocode with address text.",
+	"licences": [{
+		"type": "MIT",
+		"url": "http://github.com/miloss/jquery-geolocation-edit/blob/master/LICENCE-MIT"
+	}],
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/miloss/jquery-geolocation-edit"
+	},
+	"dependencies": {
+		"jquery": "1.4"
+	}
+}

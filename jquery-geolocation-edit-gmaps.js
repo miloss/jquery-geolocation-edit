@@ -5,6 +5,7 @@
  * Freely distributable under the MIT license.
  * 
  * @version 0.0.1 (2011-12-14)
+ * @see http://github.com/miloss/jquery-geolocation-edit
  */
 
 (function($){
