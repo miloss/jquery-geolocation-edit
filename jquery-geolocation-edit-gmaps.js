@@ -1,10 +1,10 @@
 /**
- * jQuery geolocation-edit plugin
+ * jQuery geolocation-edit-gmaps plugin
  * Copyright (c) 2011 Milos Popovic <the.elephant@gmail.com>
  * 
  * Freely distributable under the MIT license.
  * 
- * @version 0.0.1 (2011-12-14)
+ * @version 0.0.1 (2011-12-16)
  * @see http://github.com/miloss/jquery-geolocation-edit
  */
 
