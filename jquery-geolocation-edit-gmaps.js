@@ -13,7 +13,8 @@
 	// queued initializations
 	var inits = [];
 	
-	// plugin methods
+	/* plugin methods */
+	
 	var methods = {
 		main: function (options) {
 			//...
@@ -36,14 +37,14 @@
 				position: location
 			}, opts.markerOptions);
 			
-    	marker = new google.maps.Marker(markerOptions);
-    	
-    	$.data(self, 'map', map);
-    	$.data(self, 'marker', marker);
-    	
-    	google.maps.event.addListener(marker, 'dragend', function () {
-    		$(self).geolocate({}, 'getMarkerLocation');
-    	});
+			marker = new google.maps.Marker(markerOptions);
+			
+			$.data(self, 'map', map);
+			$.data(self, 'marker', marker);
+			
+			google.maps.event.addListener(marker, 'dragend', function () {
+				$(self).geolocate({}, 'getMarkerLocation');
+			});
 		},
 		
 		
@@ -96,9 +97,10 @@
 			$( opts.lng ).val( pos.lng() );
 		}
 		
-	}
+	};
+	
 
-	// main function
+	// plugin function
 	jQuery.fn.geolocate = function (options, method) {
 		var selector = this
 			, opts
@@ -124,18 +126,16 @@
 				return;
 			}
 			
-			
 			// 1. create options for map init
-		
 			// extend default options
 			opts = $.extend(true, {
 				address: [],
 				changeOnEdit: false,
 				mapOptions: {
 					zoom: 14,
-	    	  mapTypeId: google.maps.MapTypeId.ROADMAP,
-	    	  mapTypeControl: false,
-	    	  streetViewControl: false
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					mapTypeControl: false,
+					streetViewControl: false
 				},
 				markerOptions: {
 					draggable:true,
@@ -158,11 +158,11 @@
 			if ( opts.changeOnEdit ) {
 				
 				$( opts.lat ).change(function () {
-					//...
+					//TODO...
 				});
 				
 				$( opts.lng ).change(function () {
-					//...
+					//TODO...
 				});
 				
 			}
@@ -190,6 +190,7 @@
 	};
 	
 	// callback to google.maps async loading
+	// FIXME find non-jQuery.fn-polluting solution
 	jQuery.fn.geolocateGMapsLoaded = function () {
 		// empty queued initializations
 		while (inits.length) {
@@ -212,7 +213,7 @@
 			script = document.createElement("script");
 			script.type = "text/javascript";
 			script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=$.fn.geolocateGMapsLoaded";
-			document.body.appendChild(script);				
+			document.body.appendChild(script);
 		}
 	})();
 
