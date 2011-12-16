@@ -37,14 +37,14 @@
 				position: location
 			}, opts.markerOptions);
 			
-    	marker = new google.maps.Marker(markerOptions);
-    	
-    	$.data(self, 'map', map);
-    	$.data(self, 'marker', marker);
-    	
-    	google.maps.event.addListener(marker, 'dragend', function () {
-    		$(self).geolocate({}, 'getMarkerLocation');
-    	});
+			marker = new google.maps.Marker(markerOptions);
+			
+			$.data(self, 'map', map);
+			$.data(self, 'marker', marker);
+			
+			google.maps.event.addListener(marker, 'dragend', function () {
+				$(self).geolocate({}, 'getMarkerLocation');
+			});
 		},
 		
 		
@@ -133,9 +133,9 @@
 				changeOnEdit: false,
 				mapOptions: {
 					zoom: 14,
-	    	  mapTypeId: google.maps.MapTypeId.ROADMAP,
-	    	  mapTypeControl: false,
-	    	  streetViewControl: false
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					mapTypeControl: false,
+					streetViewControl: false
 				},
 				markerOptions: {
 					draggable:true,
