@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <title>Geolocation-editing jQuery plugin</title>
+  <meta name="description" content=""/>
+  
+  <!--<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>-->
+  <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="jquery-geolocation-edit-gmaps.min.js"></script>
+  
+</head>
+
+<style type="text/css">
+
+body {
+	background: url("background.png") repeat scroll 0 0 transparent;
+	margin: 0;
+	margin-left: 104px;
+	width: 850px;
+}
+
+pre {
+	background-color: #EEE;
+	border-left: 4px solid #BBB;
+	width: 531px;
+	padding: 4px;
+}
+
+.smaller {
+	font-size: small;
+}
+
+table td {
+	padding: 3px;
+}
+
+/*
+#left_strip {
+	position: absolute;
+	top: 0px; left: 24px;
+	width: 54px;
+	height: 100%;
+	border-right: 4px solid #219195;
+	border-left: 4px solid #FA524F;
+}
+
+#blue_square {
+	position: absolute;
+	left: 24px;
+	top: 71px;
+	width: 4px; height: 4px;
+	background-color: #219195;
+}
+
+h1 {
+	background-color: #FFFFFF;
+	border-bottom: 4px solid #219195;
+	border-top: 4px solid #FA524F;
+	color: #FA524F;
+	font-family: "futura-CondensedMedium",futura,helvetica;
+	line-height: 46px;
+	margin-left: -104px;
+	padding-left: 104px;
+}
+*/
+
+h1 {
+	margin: 30px 0 48px 0;
+}
+
+#map, #map2, #map3 {
+	width: 320px;
+	height: 200px;
+	margin-bottom: 15px;
+}
+
+#map2 {
+}
+
+#map3 {
+	width: 512px;
+	height: 320px;
+}
+
+#address3 {
+	width: 320px;
+}
+
+.txtfield {
+	width: 151px;
+}
+
+.string { color: #007000; }
+.number { color: darkred; }
+.boolean { color: blue; }
+.null { color: magenta; }
+
+table.options {
+	width: 100%;
+	border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #fff;
+}
+
+table.options th {
+	background-color: #eee;
+  border: 1px solid #ddd;
+	color: #333;
+	text-align: left;
+	padding: 3px;
+}
+
+table.options tr {
+	margin-bottom: 2px;
+}
+
+table.options td {
+	border: 1px solid #ddd;
+	padding: 6px;
+	vertical-align: top;
+}
+
+td.mono {
+	font-family: monospace;
+  font-size: 12pt;
+}
+
+</style>
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+	
+	// activate geolocate plugin
+	$("#map").geolocate({
+		lat: "#lat",
+		lng: "#lng"
+	});
+	
+	$("#map2").geolocate({
+		lat: "#lat2",
+		lng: "#lng2",
+		mapOptions: {
+			mapTypeId: "satellite"
+		},
+		markerOptions: {
+			title: "This is your selected location"
+		}
+	});
+	
+	$("#map3").geolocate({
+		lat: "#lat3",
+		lng: "#lng3",
+		address: ["#address3"]
+	});
+	
+	
+	// highlight code
+	$.each($('pre'), function(){
+		var newhtml = js_highlight( $(this).html() );
+		$(this).html( newhtml );
+	});
+	
+	
+	function js_highlight(inp) {
+		var input = inp;
+		input = input.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g , function (match) {
+			var cls = 'number';
+			if (/^"/.test(match)) {
+				cls = 'string';
+			} else if (/true|false/.test(match)) {
+				cls = 'boolean';
+			} else if (/null/.test(match)) {
+				cls = 'null';
+			}
+			return '<span class="' + cls + '">' + match + '</span>';
+		});
+		
+		return input;
+	}
+	
+});
+</script>
+
+
+<body>
+	
+	<a href="http://github.com/miloss/jquery-geolocation-edit"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/ce742187c818c67d98af16f96ed21c00160c234a/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
+	
+	<div id="left_strip"></div>
+	<div id="blue_square"></div>
+	<h1>jquery-geolocation-edit</h1>
+	
+	<p>Let's say you are building a CMS, or for some reason you want to add geographic location(s) 
+	to something you manage. Do you feel that instead of editing <em>Latitude</em> and <em>Longitude</em> manually
+	it would be nicer to have simple <a target="_blank" href="http://code.google.com/apis/maps/documentation/javascript/">Google Maps</a>
+	window for such thing? Maybe even 
+	<a target="_blank" href="http://code.google.com/apis/maps/documentation/geocoding/">address geocoding</a>?
+	If you answered yes, read on.</p>
+	
+	<h2>Download</h2>
+	<table><tbody>
+	<tr>
+		<td><a href="jquery-geolocation-edit-gmaps.js">jquery-geolocation-edit-gmaps.js</a></td>
+		<td><em style="font-size: small;">5kb, uncompressed with comments</em></td>
+	</tr>
+	<tr>
+		<td><a href="jquery-geolocation-edit-gmaps.min.js">jquery-geolocation-edit-gmaps.min.js</a></td>
+		<td><em style="font-size: small;">2.4kb, packed</em></td>
+	</tr>
+	</tbody></table>
+	
+	<h2>Examples</h2>
+	<p>Required params are only coordinates fields, which can be pre-populated. <em>Hint: drag marker on map.</em></p>
+	
+	<p class="smaller">CSS:</p>
+	<pre>#map { width:320px; height:200px; }</pre>
+	
+	<p class="smaller">JavaScript:</p>
+	<pre>$("#map").geolocate({
+	lat: "#lat",
+	lng: "#lng"
+});</pre>
+	<div id="map"></div>
+	<input type="text" class="txtfield" id="lat" value="44.81">
+	<input type="text" class="txtfield" id="lng" value="20.46">
+	
+	<br/><br/>
+	
+	<p>Fields can be hidden (see page source) and you can pass any additional options for Google Maps API, both for map 
+	(defined <a target="_blank" href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MapOptions">here</a>)
+	 and marker (defined <a target="_blank" href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MarkerOptions">here</a>).</p>
+	
+	<pre>$("#map2").geolocate({
+	lat: "#lat2",
+	lng: "#lng2",
+	mapOptions: {
+		mapTypeId: "satellite"
+	},
+	markerOptions: {
+		title: "This is your selected location"
+	}
+});</pre>
+	<div id="map2"></div>
+	<input type="hidden" class="txtfield" id="lat2" value="44.81">
+	<input type="hidden" class="txtfield"  id="lng2" value="20.46">
+	
+	<br/>
+	
+	<h3>Geolocating from address</h3>
+	
+	<p>You can get position from address field (or multiple fields). 
+	Location will populate when you change text field and focus out. <em>Hint: try completing address info below.</em></p>
+	<p><span style="color:red;">Note:</span> geocoding is an expensive operation, and there are 
+	Google Geocoding API <a target="_blank" href="http://code.google.com/apis/maps/documentation/geocoding/#Limits">usage limits</a> for non-Premier users, so be sure 
+	<span style="text-decoration: underline;">not</span> to do this automatically on every page load.</p>
+	
+	
+	<pre>$("#map3").geolocate({
+	lat: "#lat3",
+	lng: "#lng3",
+	address: ["#address3"]
+});</pre>
+	<div id="map3"></div>
+	<input type="hidden" id="lat3" value="48.85">
+	<input type="hidden" id="lng3" value="2.35">
+	<input type="text" id="address3" value="uk, london, abbey roa">
+	
+	<br/><br/>
+	<h2>Options</h2>
+	<a name="options"></a>
+	
+	<table class="options"><tbody>
+	<tr>
+		<th style="width: 160px;">Parameter</th>
+		<th style="width: 100px;">Type</th>
+		<th>Description</th>
+	</tr>
+	
+	<tr>
+		<td class="mono">lat</td>
+		<td class="mono">float</td>
+		<td>Latitude input field selector. Required.</td>
+	</tr>
+	
+	<tr>
+		<td class="mono">lng</td>
+		<td class="mono">float</td>
+		<td>Longitude input field selector. Required.</td>
+	</tr>
+	
+	<tr>
+		<td class="mono">address</td>
+		<td class="mono">array</td>
+		<td>Optional array of selectors. Define it to use address string (concatenated value of all fields)
+		for geocoding lookup. Useful for multiple address fields.</td>
+	</tr>
+	
+	<tr>
+		<td class="mono">mapOptions</td>
+		<td class="mono">object</td>
+		<td>Options to pass for Google Maps <a href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MapOptions" target="_blank">Map</a> object initialization.</td>
+	</tr>
+
+	<tr>
+		<td class="mono">markerOptions</td>
+		<td class="mono">object</td>
+		<td>Options to pass for Google Maps <a href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MarkerOptions" target="_blank">Marker</a> object initialization.</td>
+	</tr>
+	
+
+	</tbody></table>
+	
+	<br/><br/><br/>
+	
+</body>
+</html>
