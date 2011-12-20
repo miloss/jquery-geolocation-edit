@@ -31,6 +31,10 @@ pre {
 	font-size: small;
 }
 
+table td {
+	padding: 3px;
+}
+
 /*
 #left_strip {
 	position: absolute;
@@ -87,6 +91,41 @@ h1 {
 	width: 151px;
 }
 
+.string { color: #007000; }
+.number { color: darkred; }
+.boolean { color: blue; }
+.null { color: magenta; }
+
+table.options {
+	width: 100%;
+	border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #fff;
+}
+
+table.options th {
+	background-color: #eee;
+  border: 1px solid #ddd;
+	color: #333;
+	text-align: left;
+	padding: 3px;
+}
+
+table.options tr {
+	margin-bottom: 2px;
+}
+
+table.options td {
+	border: 1px solid #ddd;
+	padding: 6px;
+	vertical-align: top;
+}
+
+td.mono {
+	font-family: monospace;
+  font-size: 12pt;
+}
+
 </style>
 
 
@@ -116,6 +155,31 @@ $(document).ready(function () {
 		address: ["#address3"]
 	});
 	
+	
+	// highlight code
+	$.each($('pre'), function(){
+		var newhtml = js_highlight( $(this).html() );
+		$(this).html( newhtml );
+	});
+	
+	
+	function js_highlight(inp) {
+		var input = inp;
+		input = input.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g , function (match) {
+			var cls = 'number';
+			if (/^"/.test(match)) {
+				cls = 'string';
+			} else if (/true|false/.test(match)) {
+				cls = 'boolean';
+			} else if (/null/.test(match)) {
+				cls = 'null';
+			}
+			return '<span class="' + cls + '">' + match + '</span>';
+		});
+		
+		return input;
+	}
+	
 });
 </script>
 
@@ -129,7 +193,7 @@ $(document).ready(function () {
 	<h1>jquery-geolocation-edit</h1>
 	
 	<p>Let's say you are building a CMS, or for some reason you want to add geographic location(s) 
-	to something you manage. Do you feel that instead of editing <em>Lattitude</em> and <em>Longitude</em> manually
+	to something you manage. Do you feel that instead of editing <em>Latitude</em> and <em>Longitude</em> manually
 	it would be nicer to have simple <a target="_blank" href="http://code.google.com/apis/maps/documentation/javascript/">Google Maps</a>
 	window for such thing? Maybe even 
 	<a target="_blank" href="http://code.google.com/apis/maps/documentation/geocoding/">address geocoding</a>?
@@ -202,6 +266,51 @@ $(document).ready(function () {
 	<input type="hidden" id="lat3" value="48.85">
 	<input type="hidden" id="lng3" value="2.35">
 	<input type="text" id="address3" value="uk, london, abbey roa">
+	
+	<br/><br/>
+	<h2>Options</h2>
+	<a name="options"></a>
+	
+	<table class="options"><tbody>
+	<tr>
+		<th style="width: 160px;">Parameter</th>
+		<th style="width: 100px;">Type</th>
+		<th>Description</th>
+	</tr>
+	
+	<tr>
+		<td class="mono">lat</td>
+		<td class="mono">float</td>
+		<td>Latitude input field selector. Required.</td>
+	</tr>
+	
+	<tr>
+		<td class="mono">lng</td>
+		<td class="mono">float</td>
+		<td>Longitude input field selector. Required.</td>
+	</tr>
+	
+	<tr>
+		<td class="mono">address</td>
+		<td class="mono">array</td>
+		<td>Optional array of selectors. Define it to use address string (concatenated value of all fields)
+		for geocoding lookup. Useful for multiple address fields.</td>
+	</tr>
+	
+	<tr>
+		<td class="mono">mapOptions</td>
+		<td class="mono">object</td>
+		<td>Options to pass for Google Maps <a href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MapOptions" target="_blank">Map</a> object initialization.</td>
+	</tr>
+
+	<tr>
+		<td class="mono">markerOptions</td>
+		<td class="mono">object</td>
+		<td>Options to pass for Google Maps <a href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MarkerOptions" target="_blank">Marker</a> object initialization.</td>
+	</tr>
+	
+
+	</tbody></table>
 	
 	<br/><br/><br/>
 	
