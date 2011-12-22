@@ -4,18 +4,19 @@
  * 
  * Freely distributable under the MIT license.
  * 
- * @version 0.0.1 (2011-12-16)
+ * @version 0.0.2 (2011-12-21)
  * @see http://github.com/miloss/jquery-geolocation-edit
  */
 
-(function($){
+(function ($) {
+	var inits, methods, loadScript;
 	
 	// queued initializations
-	var inits = [];
+	inits = [];
 	
 	/* plugin methods */
 	
-	var methods = {
+	methods = {
 		main: function (options) {
 			//...
 		},
@@ -52,7 +53,8 @@
 			var self = $(this).get(0)
 				, addr = ''
 				, opts = $.data(self, 'opts')
-				, len = opts.address.length;
+				, len = opts.address.length
+				, geo;
 				
 			// get address
 			while (len--) {
@@ -74,9 +76,9 @@
 				map = $.data(self, 'map');
 				marker = $.data(self, 'marker');
 				
-				if (typeof map === 'undefined') {
-					// ???
-				}
+				//if (typeof map === 'undefined') {
+				//	// ???
+				//}
 				
 				loc = first.geometry.location;
 				map.panToBounds( first.geometry.viewport );
@@ -90,8 +92,8 @@
 		getMarkerLocation: function () {
 			var self = $(this).get(0)
 				, mrk = $.data(self, 'marker')
-  			, opts = $.data(self, 'opts')
-  			, pos = mrk.getPosition();
+				, opts = $.data(self, 'opts')
+				, pos = mrk.getPosition();
   			
 			$( opts.lat ).val( pos.lat() );
 			$( opts.lng ).val( pos.lng() );
@@ -101,7 +103,7 @@
 	
 
 	// plugin function
-	jQuery.fn.geolocate = function (options, method) {
+	$.fn.geolocate = function (options, method) {
 		var selector = this
 			, opts
 			, llat, llng, llocation
@@ -191,7 +193,7 @@
 	
 	// callback to google.maps async loading
 	// FIXME find non-jQuery.fn-polluting solution
-	jQuery.fn.geolocateGMapsLoaded = function () {
+	$.fn.geolocateGMapsLoaded = function () {
 		// empty queued initializations
 		while (inits.length) {
 			inits.shift()();
@@ -214,7 +216,7 @@
 			script.type = "text/javascript";
 			script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=$.fn.geolocateGMapsLoaded";
 			document.body.appendChild(script);
-		}
+		};
 	})();
 
 })(jQuery);
