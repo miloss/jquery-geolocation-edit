@@ -206,7 +206,7 @@ $(document).ready(function () {
 	</tr>
 	<tr>
 		<td><a href="jquery-geolocation-edit-gmaps.min.js">jquery-geolocation-edit-gmaps.min.js</a></td>
-		<td><em style="font-size: small;">2.4kb, packed</em></td>
+		<td><em style="font-size: small;">1.2kb, packed and gzipped</em></td>
 	</tr>
 	</tbody></table>
 	
@@ -265,6 +265,12 @@ $(document).ready(function () {
 	<input type="hidden" id="lat3" value="48.85">
 	<input type="hidden" id="lng3" value="2.35">
 	<input type="text" id="address3" value="uk, london, abbey roa">
+	
+	<br/>
+	<br/>
+	<h3>Geolocating programmatically</h3>
+	<p>Geocoding happens on jQuery <strong>"change"</strong> event (on any of address's input fields), but you can call it <em>programmatically</em> by passing empty options hash and method name (after initialization).</p>
+	<pre>$("#map3").geolocate({}, "callGeocoding");</pre><input type="button" value="execute!" onclick="$('#map3').geolocate({}, 'callGeocoding'); $(this).hide();"/>
 	
 	<br/><br/>
 	<h2>Options</h2>

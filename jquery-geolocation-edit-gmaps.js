@@ -1,10 +1,10 @@
 /**
  * jQuery geolocation-edit-gmaps plugin
- * Copyright (c) 2011 Milos Popovic <the.elephant@gmail.com>
+ * Copyright (c) 2012 Milos Popovic <the.elephant@gmail.com>
  * 
  * Freely distributable under the MIT license.
  * 
- * @version 0.0.2 (2011-12-21)
+ * @version 0.0.3 (2012-02-07)
  * @see http://github.com/miloss/jquery-geolocation-edit
  */
 
@@ -49,7 +49,7 @@
 		},
 		
 		
-		callGeocoder: function () {
+		callGeocoding: function () {
 			var self = $(this).get(0)
 				, addr = ''
 				, opts = $.data(self, 'opts')
@@ -75,10 +75,6 @@
 				
 				map = $.data(self, 'map');
 				marker = $.data(self, 'marker');
-				
-				//if (typeof map === 'undefined') {
-				//	// ???
-				//}
 				
 				loc = first.geometry.location;
 				map.panToBounds( first.geometry.viewport );
@@ -168,7 +164,7 @@
 				for (i=0; i<addrlen; i++) {
 					
 					$( opts.address[i] ).change(function () {
-						$(selector).geolocate({}, 'callGeocoder');
+						$(selector).geolocate({}, 'callGeocoding');
 					});
 					
 				}
