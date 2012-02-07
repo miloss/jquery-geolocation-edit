@@ -11,5 +11,5 @@
 jQuery plugin for editing latitude/longitude pair with Google Maps window.
 Also, there is (optional) geocoding of address text with Google Geocoding API.
 
-For examples and some documentation, see:
+For examples and documentation, see:
 http://miloss.github.com/jquery-geolocation-edit

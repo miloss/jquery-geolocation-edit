@@ -156,17 +156,10 @@
 				$(this).geolocate({}, 'initMap', llocation);
 			}
 			
-			// 3. bind fields actions - coordinates
+			// 3. bind fields actions - coordinates (future functionality ?)
 			if ( opts.changeOnEdit ) {
-				
-				$( opts.lat ).change(function () {
-					//TODO...
-				});
-				
-				$( opts.lng ).change(function () {
-					//TODO...
-				});
-				
+				$( opts.lat ).change(function () { /* ... */ });
+				$( opts.lng ).change(function () { /* ... */ });
 			}
 			
 			// 4. bind field actions - address
@@ -186,6 +179,7 @@
 			
 		} else {
 			$.error( 'Method ' +  method + ' does not exist on jQuery.geolocate' );
+			
 		}
 		
 		return this;
