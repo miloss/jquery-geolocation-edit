@@ -6,7 +6,7 @@
   <meta name="description" content="jquery-geolocation-edit is jQuery plugin for editing latitude/longitude pair with Google Maps window. Features optional geocoding of address text with Google Geocoding API."/>
   <!--<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>-->
   <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
-  <script type="text/javascript" src="jquery-geolocation-edit-gmaps.min.js"></script>
+  <script type="text/javascript" src="jquery-geolocation-edit-gmaps.js"></script>
   
 </head>
 <body>
@@ -95,9 +95,9 @@
 	<br/>
 	<br/>
 	<h3>Geolocating programmatically</h3>
-	<p>Geocoding happens on jQuery <strong>"change"</strong> event (on any of address's input fields), but you can call it <em>programmatically</em> by passing empty options hash and method name (after initialization).</p>
-	<pre>$("#map3").geolocate({}, "callGeocoding");</pre>
-	<input type="button" value="execute!" onclick="$('#map3').geolocate({}, 'callGeocoding'); $(this).hide();" title="(last map displayed above)"/>
+	<p>Geocoding happens on jQuery <strong>"change"</strong> event (on any of address's input fields), but you can call it <em>programmatically</em> by passing just method name (after initialization).</p>
+	<pre>$("#map3").geolocate("callGeocoding");</pre>
+	<input type="button" value="execute!" onclick="$('#map3').geolocate('callGeocoding'); $(this).hide();" title="(last map displayed above)"/>
 	
 	
 	<br/><br/>
@@ -140,6 +140,12 @@
 		<td class="mono">markerOptions</td>
 		<td class="mono">object</td>
 		<td>Options to pass for Google Maps <a href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MarkerOptions" target="_blank">Marker</a> object initialization.</td>
+	</tr>
+
+	<tr>
+		<td class="mono">geoCallback</td>
+		<td class="mono">function</td>
+		<td>Function to execute on successfull Geocoding query finish. No parameters passed.</td>
 	</tr>
 	
 
