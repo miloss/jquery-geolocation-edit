@@ -1,6 +1,6 @@
 {
 	"name": "geolocation-edit-gmaps",
-	"version": "0.0.2",
+	"version": "0.0.4",
 	"title": "Geolocation editing with Google Maps",
 	"author": {
 		"name": "Milos Popovic",
@@ -19,7 +19,8 @@
 		"geolocation",
 		"geolocate",
 		"google maps",
-		"gmaps"
+		"gmaps",
+		"geocoding"
 	],
 	"homepage": "http://miloss.github.com/jquery-geolocation-edit"
 }
