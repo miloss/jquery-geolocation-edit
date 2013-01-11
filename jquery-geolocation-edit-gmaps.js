@@ -1,6 +1,6 @@
 /**
  * jQuery geolocation-edit-gmaps plugin
- * Copyright (c) 2012-2013 Milos Popovic <the.elephant@gmail.com>
+ * Copyright (c) 2012 Milos Popovic <the.elephant@gmail.com>
  * 
  * Freely distributable under the MIT license.
  * 
@@ -151,6 +151,8 @@
 		}, function (data, status) {
 			var loc, first, map, marker;
 			
+			cbfunc(data, status);
+			
 			first = data[0];
 			if (typeof first === 'undefined') return;
 			
@@ -162,7 +164,6 @@
 			map.panTo( loc );
 			marker.setPosition( loc );
 			$(self).geolocate({}, 'getMarkerLocation');
-			cbfunc();
 		});
 	};
 	

@@ -6,7 +6,7 @@
   <meta name="description" content="jquery-geolocation-edit is jQuery plugin for editing latitude/longitude pair with Google Maps window. Features optional geocoding of address text with Google Geocoding API."/>
   <!--<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>-->
   <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
-  <script type="text/javascript" src="jquery-geolocation-edit-gmaps.js"></script>
+  <script type="text/javascript" src="jquery-geolocation-edit-gmaps.min.js"></script>
   
 </head>
 <body>
@@ -19,9 +19,9 @@
 	
 	<p>Let's say you are building a CMS, or for some reason you want to add geographic location(s) 
 	to something you manage. Do you feel that instead of editing <em>Latitude</em> and <em>Longitude</em> manually
-	it would be nicer to have simple <a target="_blank" href="http://code.google.com/apis/maps/documentation/javascript/">Google Maps</a>
+	it would be nicer to have simple <a target="_blank" href="http://developers.google.com/maps/documentation/javascript/">Google Maps</a>
 	window for such thing? Maybe even 
-	<a target="_blank" href="http://code.google.com/apis/maps/documentation/geocoding/">address geocoding</a>?
+	<a target="_blank" href="http://developers.google.com/maps/documentation/geocoding/">address geocoding</a>?
 	If you answered yes, read on.</p>
 	
 	<h2>Download</h2>
@@ -78,7 +78,7 @@
 	<p>You can get position from address field (or multiple fields). 
 	Location will populate when you change text field and focus out. <em>Hint: try completing address info below.</em></p>
 	<p><span style="color:red;">Note:</span> geocoding is an expensive operation, and there are 
-	Google Geocoding API <a target="_blank" href="http://code.google.com/apis/maps/documentation/geocoding/#Limits">usage limits</a> for non-Premier users, so be sure 
+	Google Geocoding API <a target="_blank" href="http://developers.google.com/maps/documentation/geocoding/#Limits">usage limits</a> for non-Premier users, so be sure 
 	<span style="text-decoration: underline;">not</span> to do this automatically on every page load.</p>
 	
 	
@@ -133,19 +133,19 @@
 	<tr>
 		<td class="mono">mapOptions</td>
 		<td class="mono">object</td>
-		<td>Options to pass for Google Maps <a href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MapOptions" target="_blank">Map</a> object initialization.</td>
+		<td>Options to pass for Google Maps <a href="http://developers.google.com/maps/documentation/javascript/reference#MapOptions" target="_blank">Map</a> object initialization.</td>
 	</tr>
 
 	<tr>
 		<td class="mono">markerOptions</td>
 		<td class="mono">object</td>
-		<td>Options to pass for Google Maps <a href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MarkerOptions" target="_blank">Marker</a> object initialization.</td>
+		<td>Options to pass for Google Maps <a href="http://developers.google.com/maps/documentation/javascript/reference#MarkerOptions" target="_blank">Marker</a> object initialization.</td>
 	</tr>
 
 	<tr>
-		<td class="mono">geoCallback</td>
+		<td class="mono">geoCallback(data, status)</td>
 		<td class="mono">function</td>
-		<td>Function to execute on successfull Geocoding query finish. No parameters passed.</td>
+		<td>Function to execute on Google Geocoding query response. Proxies parameters from Geocoding response.</td>
 	</tr>
 	
 
