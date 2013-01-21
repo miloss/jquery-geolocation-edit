@@ -12,14 +12,15 @@
 		"url": "http://github.com/miloss/jquery-geolocation-edit/blob/master/LICENCE-MIT"
 	}],
 	"dependencies": {
-		"jquery": "1.4"
+		"jquery": ">=1.4"
 	},
 	"keywords": [
 		"geolocation",
 		"geolocate",
+		"geocoding",
 		"google maps",
 		"gmaps",
-		"geocoding"
+		"maps"
 	],
 	"homepage": "http://miloss.github.com/jquery-geolocation-edit",
 	"docs": "http://github.com/miloss/jquery-geolocation-edit",
