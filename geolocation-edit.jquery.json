@@ -1,7 +1,7 @@
 {
-	"name": "geolocation-edit-gmaps",
+	"name": "geolocation-edit",
 	"version": "0.0.4",
-	"title": "Geolocation editing with Google Maps",
+	"title": "jQuery Geolocation editing",
 	"author": {
 		"name": "Milos Popovic",
 		"email": "the.elephant@gmail.com",
@@ -22,5 +22,8 @@
 		"gmaps",
 		"geocoding"
 	],
-	"homepage": "http://miloss.github.com/jquery-geolocation-edit"
+	"homepage": "http://miloss.github.com/jquery-geolocation-edit",
+	"docs": "http://github.com/miloss/jquery-geolocation-edit",
+	"demo": "http://miloss.github.com/jquery-geolocation-edit",
+	"bugs": "http://github.com/miloss/jquery-geolocation-edit/issues"
 }
