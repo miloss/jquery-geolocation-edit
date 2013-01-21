@@ -1,7 +1,7 @@
 {
 	"name": "geolocation-edit",
 	"version": "0.0.4",
-	"title": "jQuery Geolocation editing",
+	"title": "jQuery Geolocation editor",
 	"author": {
 		"name": "Milos Popovic",
 		"email": "the.elephant@gmail.com",
