@@ -4,7 +4,6 @@
 	"title": "jQuery Geolocation editor",
 	"author": {
 		"name": "Milos Popovic",
-		"email": "the.elephant@gmail.com",
 		"url": "http://github.com/miloss"
 	},
 	"description": "Edit latitude/longitude pair with Google Maps window and/or geocode with address text.",
