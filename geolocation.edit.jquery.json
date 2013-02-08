@@ -1,12 +1,12 @@
 {
 	"name": "geolocation.edit",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"title": "jQuery Geolocation editor",
 	"author": {
 		"name": "Milos Popovic",
 		"url": "https://github.com/miloss"
 	},
-	"description": "Edit latitude/longitude pair with Google Maps window. Also, geocode with address text.",
+	"description": "Edit latitude/longitude pair with Google Maps window. If you want, geocode with address text.",
 	"licenses": [{
 		"type": "MIT",
 		"url": "https://github.com/miloss/jquery-geolocation-edit/blob/master/LICENCE-MIT"
@@ -24,6 +24,6 @@
 		"maps"
 	],
 	"docs": "https://github.com/miloss/jquery-geolocation-edit",
-	"demo": "https://miloss.github.com/jquery-geolocation-edit",
+	"demo": "http://miloss.github.com/jquery-geolocation-edit",
 	"bugs": "https://github.com/miloss/jquery-geolocation-edit/issues"
 }
