@@ -4,7 +4,7 @@
  * 
  * Freely distributable under the MIT license.
  * 
- * @version 0.0.9 (2013-02-08)
+ * @version 0.0.10 (2014-02-27)
  * @see http://github.com/miloss/jquery-geolocation-edit
  */
 
@@ -33,15 +33,15 @@
 		  , i, addrlen;
 		  
 		// Check for required fields
-		if (typeof options.lat === "undefined" 
-			|| typeof options.lng === "undefined") {
+		if (typeof options.lat === "undefined" ||
+				typeof options.lng === "undefined") {
 			$.error("Please provide 'lat' and 'lng' options for jQuery.geolocate");
 			return;
 		}
 		
 		// If GoogleMaps not loaded - push init to queue and go on
-		if (typeof google === "undefined" 
-			|| typeof google.maps === "undefined") {
+		if (typeof google === "undefined" ||
+				typeof google.maps === "undefined") {
 			inits.push(function () {
 				$(selector).geolocate(options);
 			});
@@ -87,7 +87,6 @@
 		addrlen = opts.address.length;
 		if (addrlen > 0) {
 			for (i=0; i<addrlen; i++) {
-
 				$( opts.address[i] ).change(function () {
 					$(selector).geolocate({}, 'callGeocoding');
 				});
@@ -140,15 +139,15 @@
 		  , geo;
 
 			
-		// get address
+		// Get address
 		while (len--) {
 			addr += $( opts.address[len] ).val();
 		}
 		
-		// make request
+		// Make request
 		geo = new google.maps.Geocoder();
 		
-		// geocoder response
+		// Geocoder response
 		geo.geocode({
 			address: addr
 		}, function (data, status) {
@@ -223,7 +222,7 @@
 	// Private functions
 	// -----------------
 	
-	// loadScript, we want to do it only once
+	// Load GoogleMaps, we want to do it only once
 	loadScript = (function(){
 		var ran = false;
 		
