@@ -4,7 +4,7 @@
  * 
  * Freely distributable under the MIT license.
  * 
- * @version 0.0.10 (2014-02-27)
+ * @version 0.0.11 (2014-06-01)
  * @see http://github.com/miloss/jquery-geolocation-edit
  */
 
@@ -71,11 +71,15 @@
 		// Init map and marker - per coordinates
 		llat = parseFloat( $( opts.lat ).val() );
 		llng = parseFloat( $( opts.lng ).val() );
-		
-		if ( !isNaN(llat) && !isNaN(llng) ) {
-			llocation = new google.maps.LatLng(llat, llng);
-			$(this).geolocate({}, 'initMap', llocation);
+		if (isNaN(llat)) {
+			llat = 0;
 		}
+		if (isNaN(llng)) {
+			llng = 0;
+		}
+		
+		llocation = new google.maps.LatLng(llat, llng);
+		$(this).geolocate({}, 'initMap', llocation);
 		
 		// Bind actions - coordinates fields (future?)
 		if ( opts.changeOnEdit ) {
