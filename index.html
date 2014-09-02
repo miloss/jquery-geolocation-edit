@@ -13,11 +13,7 @@
 	<div id="blue_square"></div>
 	<h1>jquery-geolocation-edit</h1>
 	
-	<p>Let's say you are building a CMS, or for some reason you want to add geographic location(s) 
-	to something you manage. Do you feel that instead of editing <em>Latitude</em> and <em>Longitude</em> manually
-	it would be nicer to have simple <a target="_blank" href="http://developers.google.com/maps/documentation/javascript/">Google Maps</a>
-	window for such thing? Maybe even 
-	<a target="_blank" href="http://developers.google.com/maps/documentation/geocoding/">address geocoding</a>?
+	<p>Let's say you want to enter/edit geographic location(s) to something you manage. Do you feel that instead of editing <em>Latitude</em> and <em>Longitude</em> manually it would be nicer to have simple <a target="_blank" href="http://developers.google.com/maps/documentation/javascript/">Google Maps</a> window for such thing? Maybe even <a target="_blank" href="http://developers.google.com/maps/documentation/geocoding/">geocoding</a> of typed address?
 	If you answered yes, read on.</p>
 	
 	<h2>Download</h2>
@@ -49,9 +45,7 @@
 	
 	<br/><br/>
 	
-	<p>Fields can be hidden (see page source) and you can pass any additional options for Google Maps API, both for map 
-	(defined <a target="_blank" href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MapOptions">here</a>)
-	 and marker (defined <a target="_blank" href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MarkerOptions">here</a>).</p>
+	<p>Fields can be hidden (which is kind of a point of this plugin) and you can pass any additional options for Google Maps API, both for map (defined <a target="_blank" href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MapOptions">here</a>) and marker (defined <a target="_blank" href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MarkerOptions">here</a>).</p>
 	
 	<pre>$("#map2").geolocate({
 	lat: "#lat2",
@@ -73,9 +67,8 @@
 	
 	<h3>Geolocating from address</h3>
 	
-	<p>You can get position from address field (or multiple fields). 
-	Location will populate when you change text field and focus out. <em>Hint: try completing address info below.</em></p>
-	<p><span style="color:red;">Note:</span> geocoding is an expensive operation, and there are 
+	<p>You can get position from address field (or multiple fields). Location will populate when you change text field. <em>Hint: complete address below and press Enter or focus-out.</em></p>
+	<p><span style="color:red;">Note:</span> Geocoding is an expensive operation, and there are 
 	Google Geocoding API <a target="_blank" href="http://developers.google.com/maps/documentation/geocoding/#Limits">usage limits</a> for non-Premier users, so be sure 
 	<span style="text-decoration: underline;">not</span> to do this automatically on every page load.</p>
 	
