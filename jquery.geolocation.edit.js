@@ -128,6 +128,13 @@
 		gmaps.event.addListener(marker, 'dragend', function () {
 			$(self).geolocate({}, 'getMarkerLocation');
 		});
+		
+		// Move the marker to the location user clicks
+	        gmaps.event.addListener(map, 'click', function (event) {
+	            marker.setPosition(event.latLng);
+	            $( opts.lat ).val( event.latLng.lat() );
+	            $( opts.lng ).val( event.latLng.lng() );
+	        });
 	};
 	
 	
