@@ -130,11 +130,10 @@
 		});
 		
 		// Move the marker to the location user clicks
-	        gmaps.event.addListener(map, 'click', function (event) {
-	            marker.setPosition(event.latLng);
-	            $( opts.lat ).val( event.latLng.lat() );
-	            $( opts.lng ).val( event.latLng.lng() );
-	        });
+		gmaps.event.addListener(map, 'click', function (event) {
+			marker.setPosition(event.latLng);
+			$(self).geolocate({}, 'getMarkerLocation');
+		});
 	};
 	
 	
@@ -185,17 +184,16 @@
 	 * Copy marker position to coordinates fields
 	 */
 	methods.getMarkerLocation = function () {
-		var self = $(this).get(0)
-		  , mrk = $.data(self, 'marker')
-		  , opts = $.data(self, 'opts')
-		  , pos = mrk.getPosition();
-			
+		var marker = $.data($(this).get(0), 'marker')
+		  , opts = $.data($(this).get(0), 'opts')
+		  , pos = marker.getPosition();
+
 		$( opts.lat ).val( pos.lat() );
 		$( opts.lng ).val( pos.lng() );
 	};
-	
 
-	// Plugin function
+
+	// Main plugin function
 	// Call appropriate method, or execute "main"
 	$.fn.geolocate = function (os, method) {
 		var pslice = Array.prototype.slice;
