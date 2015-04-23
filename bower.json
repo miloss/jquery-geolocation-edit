@@ -1,0 +1,21 @@
+{
+  "name": "jquery-geolocation-edit",
+  "version": "0.0.10",
+  "homepage": "https://github.com/miloss/jquery-geolocation-edit",
+  "authors": [
+    "Milos Popovic <the.elephant@gmail.com>"
+  ],
+  "description": "jQuery plugin for Geolocation latitude/longitude pair editing with Google Maps window.",
+  "main": "jquery.geolocation.edit.min.js",
+  "keywords": [
+    "geolocation",
+    "geolocate",
+    "geocoding",
+    "google",
+    "maps",
+    "lat",
+    "lon",
+    "pair"
+  ],
+  "license": "MIT"
+}

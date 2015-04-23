@@ -4,7 +4,7 @@
  *
  * Freely distributable under the MIT license.
  *
- * @version 0.0.11 (2014-06-01)
+ * @version 0.0.12 (2015-04-23)
  * @see http://github.com/miloss/jquery-geolocation-edit
  */
 
@@ -30,14 +30,14 @@
 
 		// Check for required fields
 		if (typeof options.lat === "undefined" ||
-				typeof options.lng === "undefined") {
+			typeof options.lng === "undefined") {
 			$.error("Please provide 'lat' and 'lng' options for jQuery.geolocate");
 			return;
 		}
 
 		// If GoogleMaps not loaded - push init to queue and go on
 		if (typeof google === "undefined" ||
-				typeof google.maps === "undefined") {
+			typeof google.maps === "undefined") {
 			inits.push(function () {
 				$(selector).geolocate(options);
 			});
