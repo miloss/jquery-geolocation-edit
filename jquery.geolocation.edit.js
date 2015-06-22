@@ -4,10 +4,9 @@
  *
  * Freely distributable under the MIT license.
  *
- * @version 0.0.12 (2015-04-23)
+ * @version 0.0.14 (2015-06-22)
  * @see http://github.com/miloss/jquery-geolocation-edit
  */
-
 (function ($) {
 	var loadScript;
 
@@ -19,7 +18,6 @@
 
 
 	// Plugin methods
-	// --------------
 
 	/**
 	 * Main execution method
@@ -29,15 +27,13 @@
 		var selector = this;
 
 		// Check for required fields
-		if (typeof options.lat === "undefined" ||
-			typeof options.lng === "undefined") {
+		if (typeof options.lat === "undefined" || typeof options.lng === "undefined") {
 			$.error("Please provide 'lat' and 'lng' options for jQuery.geolocate");
 			return;
 		}
 
 		// If GoogleMaps not loaded - push init to queue and go on
-		if (typeof google === "undefined" ||
-			typeof google.maps === "undefined") {
+		if (typeof google === "undefined" || typeof google.maps === "undefined") {
 			inits.push(function () {
 				$(selector).geolocate(options);
 			});
@@ -140,7 +136,7 @@
 		var cbfunc = opts.geoCallback;
 
 		// Get address
-        var addr = '';
+		var addr = '';
 		while (len--) {
 			addr += $( opts.address[len] ).val();
 		}
@@ -188,24 +184,17 @@
 	// Call appropriate method, or execute "main"
 	$.fn.geolocate = function (os, method) {
 		var pslice = Array.prototype.slice;
-
-		if ( typeof method === 'undefined' ) {
-
-			// Only method passed (as 1st parameter)
+		if ( typeof method === 'undefined' ) { // Only method passed (as 1st parameter)
 			if ( typeof os === "string" && typeof methods[os] !== "undefined" ) {
 				return methods[ os ].apply( this, pslice.call( arguments, 1 ));
 			} else {
 				$(this).geolocate({}, 'main', os);
 			}
-
 		} else if ( methods[method] ) {
 			return methods[ method ].apply( this, pslice.call( arguments, 2 ));
-
 		} else {
 			$.error( "Method " +  method + " does not exist on jQuery.geolocate" );
-
 		}
-
 		return this;
 	};
 
@@ -220,7 +209,6 @@
 
 
 	// Private functions
-	// -----------------
 
 	// Load GoogleMaps, we want to do it only once
 	loadScript = (function(){
