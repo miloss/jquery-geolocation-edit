@@ -45,6 +45,7 @@
 		var opts = $.extend(true, {
 			address: [],
 			changeOnEdit: false,
+			readOnlyMap: false, // don't allow pin movement on click
 			mapOptions: {
 				zoom: 14,
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -119,10 +120,12 @@
 		});
 
 		// Move the marker to the location user clicks
-		gmaps.event.addListener(map, 'click', function (event) {
-			marker.setPosition(event.latLng);
-			$(self).geolocate({}, 'getMarkerLocation');
-		});
+		if (!opts.readOnlyMap) {
+			gmaps.event.addListener(map, 'click', function (event) {
+				marker.setPosition(event.latLng);
+				$(self).geolocate({}, 'getMarkerLocation');
+			});
+		}
 	};
 
 
