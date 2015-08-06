@@ -74,10 +74,10 @@
 		var llocation = new google.maps.LatLng(llat, llng);
 		$(this).geolocate({}, 'initMap', llocation);
 
-		// Bind actions - coordinates fields (future?)
+		// Bind actions - coordinates fields
 		if ( opts.changeOnEdit ) {
-			$( opts.lat ).change(function () { /* ... */ });
-			$( opts.lng ).change(function () { /* ... */ });
+			$( opts.lat ).change(function () { $(selector).geolocate({}, 'updateLatLng', opts); });
+			$( opts.lng ).change(function () { $(selector).geolocate({}, 'updateLatLng', opts); });
 		}
 
 		// Bind  actions - address field
@@ -91,6 +91,20 @@
 		}
 	};
 
+	/**
+	 * move to the current settings for lat & lng
+	 * @param object opts
+	 */
+	methods.updateLatLng = function (opts) {
+		var self = $(this).get(0);
+		var lat = $( opts.lat ).val();
+		var lng = $( opts.lng ).val();
+		var loc = new google.maps.LatLng(lat, lng);
+		var map = $.data(self, "map");
+		var marker = $.data(self, "marker");
+		map.panTo(loc);
+		marker.setPosition(loc);
+	}
 
 	/**
 	 * Initialize GoogleMaps Map on page
