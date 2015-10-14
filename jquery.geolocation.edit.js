@@ -45,6 +45,7 @@
 		var opts = $.extend(true, {
 			address: [],
 			changeOnEdit: false,
+			readOnlyMap: false, // don't allow pin movement on click
 			mapOptions: {
 				zoom: 14,
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -73,10 +74,10 @@
 		var llocation = new google.maps.LatLng(llat, llng);
 		$(this).geolocate({}, 'initMap', llocation);
 
-		// Bind actions - coordinates fields (future?)
+		// Bind actions - coordinates fields
 		if ( opts.changeOnEdit ) {
-			$( opts.lat ).change(function () { /* ... */ });
-			$( opts.lng ).change(function () { /* ... */ });
+			$( opts.lat ).change(function () { $(selector).geolocate({}, 'updateLatLng', opts); });
+			$( opts.lng ).change(function () { $(selector).geolocate({}, 'updateLatLng', opts); });
 		}
 
 		// Bind  actions - address field
@@ -90,6 +91,20 @@
 		}
 	};
 
+	/**
+	 * move to the current settings for lat & lng
+	 * @param object opts
+	 */
+	methods.updateLatLng = function (opts) {
+		var self = $(this).get(0);
+		var lat = $( opts.lat ).val();
+		var lng = $( opts.lng ).val();
+		var loc = new google.maps.LatLng(lat, lng);
+		var map = $.data(self, "map");
+		var marker = $.data(self, "marker");
+		map.panTo(loc);
+		marker.setPosition(loc);
+	}
 
 	/**
 	 * Initialize GoogleMaps Map on page
@@ -119,10 +134,12 @@
 		});
 
 		// Move the marker to the location user clicks
-		gmaps.event.addListener(map, 'click', function (event) {
-			marker.setPosition(event.latLng);
-			$(self).geolocate({}, 'getMarkerLocation');
-		});
+		if (!opts.readOnlyMap) {
+			gmaps.event.addListener(map, 'click', function (event) {
+				marker.setPosition(event.latLng);
+				$(self).geolocate({}, 'getMarkerLocation');
+			});
+		}
 	};
 
 
@@ -221,7 +238,7 @@
 
 			script = document.createElement("script");
 			script.type = "text/javascript";
-			script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=$.fn.geolocateGMapsLoaded";
+			script.src = ( window.location.protocol == 'https:' ? 'https' : 'http' ) + '://maps.googleapis.com/maps/api/js?sensor=false&callback=jQuery.fn.geolocateGMapsLoaded';
 			document.body.appendChild(script);
 		};
 	})();
