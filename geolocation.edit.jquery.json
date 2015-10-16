@@ -1,6 +1,6 @@
 {
 	"name": "geolocation.edit",
-	"version": "0.0.12",
+	"version": "0.0.16",
 	"title": "jQuery Geolocation editor",
 	"author": {
 		"name": "Milos Popovic",

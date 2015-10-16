@@ -4,7 +4,7 @@
  *
  * Freely distributable under the MIT license.
  *
- * @version 0.0.14 (2015-06-22)
+ * @version 0.0.16 (2015-10-16)
  * @see http://github.com/miloss/jquery-geolocation-edit
  */
 (function ($) {
@@ -27,13 +27,13 @@
 		var selector = this;
 
 		// Check for required fields
-		if (typeof options.lat === "undefined" || typeof options.lng === "undefined") {
+		if (typeof options.lat === 'undefined' || typeof options.lng === 'undefined') {
 			$.error("Please provide 'lat' and 'lng' options for jQuery.geolocate");
 			return;
 		}
 
 		// If GoogleMaps not loaded - push init to queue and go on
-		if (typeof google === "undefined" || typeof google.maps === "undefined") {
+		if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
 			inits.push(function () {
 				$(selector).geolocate(options);
 			});
@@ -45,7 +45,7 @@
 		var opts = $.extend(true, {
 			address: [],
 			changeOnEdit: false,
-			readOnlyMap: false, // don't allow pin movement on click
+			readOnlyMap: false, // Don't allow pin movement on click
 			mapOptions: {
 				zoom: 14,
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -82,29 +82,13 @@
 
 		// Bind  actions - address field
 		var addrlen = opts.address.length;
-		if (addrlen > 0) {
-			for (var i=0; i<addrlen; i++) {
-				$( opts.address[i] ).change(function () {
-					$(selector).geolocate({}, 'callGeocoding');
-				});
-			}
+		for (var i = 0; i < addrlen; i++) {
+			$( opts.address[i] ).change(function () {
+				$(selector).geolocate({}, 'callGeocoding');
+			});
 		}
 	};
 
-	/**
-	 * move to the current settings for lat & lng
-	 * @param object opts
-	 */
-	methods.updateLatLng = function (opts) {
-		var self = $(this).get(0);
-		var lat = $( opts.lat ).val();
-		var lng = $( opts.lng ).val();
-		var loc = new google.maps.LatLng(lat, lng);
-		var map = $.data(self, "map");
-		var marker = $.data(self, "marker");
-		map.panTo(loc);
-		marker.setPosition(loc);
-	}
 
 	/**
 	 * Initialize GoogleMaps Map on page
@@ -170,16 +154,16 @@
 			cbfunc(data, status);
 
 			first = data[0];
-			if (typeof first === "undefined") return;
+			if (typeof first === 'undefined') return;
 
-			map = $.data(self, "map");
-			marker = $.data(self, "marker");
+			map = $.data(self, 'map');
+			marker = $.data(self, 'marker');
 
 			loc = first.geometry.location;
 			map.panToBounds( first.geometry.viewport );
 			map.panTo( loc );
 			marker.setPosition( loc );
-			$(self).geolocate({}, "getMarkerLocation");
+			$(self).geolocate({}, 'getMarkerLocation');
 		});
 	};
 
@@ -197,12 +181,28 @@
 	};
 
 
+	/**
+	 * Move to the current settings for lat & lng
+	 * @param {Object} opts
+	 */
+	methods.updateLatLng = function (opts) {
+		var self = $(this).get(0);
+		var lat = $( opts.lat ).val();
+		var lng = $( opts.lng ).val();
+		var loc = new google.maps.LatLng(lat, lng);
+		var map = $.data(self, 'map');
+		var marker = $.data(self, 'marker');
+		map.panTo(loc);
+		marker.setPosition(loc);
+	};
+
+
 	// Main plugin function
-	// Call appropriate method, or execute "main"
+	// Call appropriate method, or execute 'main'
 	$.fn.geolocate = function (os, method) {
 		var pslice = Array.prototype.slice;
 		if ( typeof method === 'undefined' ) { // Only method passed (as 1st parameter)
-			if ( typeof os === "string" && typeof methods[os] !== "undefined" ) {
+			if ( typeof os === 'string' && typeof methods[os] !== 'undefined' ) {
 				return methods[ os ].apply( this, pslice.call( arguments, 1 ));
 			} else {
 				$(this).geolocate({}, 'main', os);
@@ -210,7 +210,7 @@
 		} else if ( methods[method] ) {
 			return methods[ method ].apply( this, pslice.call( arguments, 2 ));
 		} else {
-			$.error( "Method " +  method + " does not exist on jQuery.geolocate" );
+			$.error("Method " +  method + " does not exist on jQuery.geolocate");
 		}
 		return this;
 	};
@@ -228,7 +228,7 @@
 	// Private functions
 
 	// Load GoogleMaps, we want to do it only once
-	loadScript = (function(){
+	loadScript = (function () {
 		var ran = false;
 
 		return function () {
@@ -236,8 +236,8 @@
 			if (ran) return;
 			ran = true;
 
-			script = document.createElement("script");
-			script.type = "text/javascript";
+			script = document.createElement('script');
+			script.type = 'text/javascript';
 			script.src = ( window.location.protocol == 'https:' ? 'https' : 'http' ) + '://maps.googleapis.com/maps/api/js?sensor=false&callback=jQuery.fn.geolocateGMapsLoaded';
 			document.body.appendChild(script);
 		};
