@@ -236,9 +236,9 @@
 			if (ran) return;
 			ran = true;
 
-			script = document.createElement('script');
-			script.type = 'text/javascript';
-			script.src = ( window.location.protocol == 'https:' ? 'https' : 'http' ) + '://maps.googleapis.com/maps/api/js?sensor=false&callback=jQuery.fn.geolocateGMapsLoaded';
+			script = document.createElement("script");
+			script.type = "text/javascript";
+			script.src = "//maps.googleapis.com/maps/api/js?sensor=false&callback=$.fn.geolocateGMapsLoaded";
 			document.body.appendChild(script);
 		};
 	})();
