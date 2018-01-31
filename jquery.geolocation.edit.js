@@ -56,7 +56,9 @@
 				draggable:true,
 				animation: google.maps.Animation.DROP
 			},
-			geoCallback: function(){}
+			geoCallback: function(){},
+			navigatorCallback: function(){},
+			navigatorFailCallback: function(){}
 		}, options);
 
 		$(this).data('opts', opts);
@@ -165,6 +167,38 @@
 			marker.setPosition( loc );
 			$(self).geolocate({}, 'getMarkerLocation');
 		});
+	};
+
+	/**
+	 * Use navigator provided location
+	 */
+	methods.navigatorLocation = function () {
+		var self = $(this).get(0)
+		var opts = $.data(self, 'opts');
+		var cbfunc = opts.navigatorCallback;
+		var cbfailfunc = opts.navigatorFailCallback;
+		// Try HTML5 geolocation.
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(
+				function(position) {
+					var loc, map, marker;
+					cbfunc(position);
+					loc = {
+						lat: position.coords.latitude,
+						lng: position.coords.longitude
+					};
+					map = $.data(self, "map");
+					marker = $.data(self, "marker");
+					map.panTo(loc);
+					marker.setPosition(loc);
+					map.setCenter(loc);
+					$(self).geolocate({}, "getMarkerLocation");
+				}, 
+				cbfailfunc
+			);
+		} else {
+			cbfailfunc();
+		}
 	};
 
 
